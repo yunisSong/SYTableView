@@ -9,25 +9,29 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @class SYTableViewHelper;
-typedef void (^TableViewCellConfigureBlock)(id cell, id item);
+typedef void (^TableViewCellConfigureBlock)(id cell, NSIndexPath * indexPath);
 typedef void (^didSelectCellBlock) (NSIndexPath * indexPath);
+typedef NSInteger (^sectionIndex) (NSInteger sectionIndex);
+
 typedef SYTableViewHelper * (^configureCell) (TableViewCellConfigureBlock);
 typedef SYTableViewHelper * (^didSelectCell) (didSelectCellBlock);
 typedef SYTableViewHelper * (^configureSource) (NSArray *items);
 typedef SYTableViewHelper * (^cellIdentifier) (NSString *aCellIdentifier);
 typedef SYTableViewHelper * (^emptyTitle) (NSString *empty);
+typedef SYTableViewHelper * (^numberOfSections)(NSInteger sections);
+typedef SYTableViewHelper * (^numberOfRows)(sectionIndex);
 
 @interface SYTableViewHelper : NSObject<UITableViewDelegate,UITableViewDataSource>
 
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
 
+- (numberOfSections)numberOfSections;
+- (numberOfRows)numberOfRows;
 
 - (configureCell)configureCell;
 - (didSelectCell)addSelectCell;
-- (configureSource)addItem;
 - (cellIdentifier)addCellIdentifier;
 - (emptyTitle)addEmptyTitle;
 
 
-//后续添加
 @end

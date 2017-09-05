@@ -29,6 +29,8 @@
 		8B4509241EEE8F3C00E91DA1 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4509181EEE8F3C00E91DA1 /* View+MASAdditions.m */; };
 		8B4509251EEE8F3C00E91DA1 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B45091B1EEE8F3C00E91DA1 /* ViewController+MASAdditions.m */; };
 		8B4509281EEE910400E91DA1 /* DemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B4509271EEE910400E91DA1 /* DemoViewController.m */; };
+		8B903A6F1F5E723F00A2DB43 /* SYCollectionViewHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B903A6E1F5E723F00A2DB43 /* SYCollectionViewHelp.m */; };
+		8B903A751F5E727300A2DB43 /* UICollectionView+SYHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B903A741F5E727300A2DB43 /* UICollectionView+SYHelp.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +100,10 @@
 		8B45091B1EEE8F3C00E91DA1 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
 		8B4509261EEE910400E91DA1 /* DemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoViewController.h; sourceTree = "<group>"; };
 		8B4509271EEE910400E91DA1 /* DemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoViewController.m; sourceTree = "<group>"; };
+		8B903A6D1F5E723F00A2DB43 /* SYCollectionViewHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SYCollectionViewHelp.h; sourceTree = "<group>"; };
+		8B903A6E1F5E723F00A2DB43 /* SYCollectionViewHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SYCollectionViewHelp.m; sourceTree = "<group>"; };
+		8B903A731F5E727300A2DB43 /* UICollectionView+SYHelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+SYHelp.h"; sourceTree = "<group>"; };
+		8B903A741F5E727300A2DB43 /* UICollectionView+SYHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+SYHelp.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,7 @@
 		8B4508C41EEE8E5300E91DA1 /* SYTableView */ = {
 			isa = PBXGroup;
 			children = (
+				8B903A6C1F5E720B00A2DB43 /* SYCollectionView */,
 				8B4508F81EEE8E8D00E91DA1 /* SYTableView */,
 				8B4509021EEE8F3C00E91DA1 /* Masonry */,
 				8B4508C81EEE8E5300E91DA1 /* AppDelegate.h */,
@@ -234,6 +241,17 @@
 				8B45091B1EEE8F3C00E91DA1 /* ViewController+MASAdditions.m */,
 			);
 			path = Masonry;
+			sourceTree = "<group>";
+		};
+		8B903A6C1F5E720B00A2DB43 /* SYCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				8B903A6D1F5E723F00A2DB43 /* SYCollectionViewHelp.h */,
+				8B903A6E1F5E723F00A2DB43 /* SYCollectionViewHelp.m */,
+				8B903A731F5E727300A2DB43 /* UICollectionView+SYHelp.h */,
+				8B903A741F5E727300A2DB43 /* UICollectionView+SYHelp.m */,
+			);
+			path = SYCollectionView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +389,7 @@
 			files = (
 				8B45091D1EEE8F3C00E91DA1 /* MASConstraint.m in Sources */,
 				8B4509201EEE8F3C00E91DA1 /* MASViewAttribute.m in Sources */,
+				8B903A751F5E727300A2DB43 /* UICollectionView+SYHelp.m in Sources */,
 				8B4509251EEE8F3C00E91DA1 /* ViewController+MASAdditions.m in Sources */,
 				8B4509281EEE910400E91DA1 /* DemoViewController.m in Sources */,
 				8B4509221EEE8F3C00E91DA1 /* NSArray+MASAdditions.m in Sources */,
@@ -378,6 +397,7 @@
 				8B4509211EEE8F3C00E91DA1 /* MASViewConstraint.m in Sources */,
 				8B45091F1EEE8F3C00E91DA1 /* MASLayoutConstraint.m in Sources */,
 				8B4508FE1EEE8E8D00E91DA1 /* UITableView+SYHelp.m in Sources */,
+				8B903A6F1F5E723F00A2DB43 /* SYCollectionViewHelp.m in Sources */,
 				8B4508CD1EEE8E5300E91DA1 /* ViewController.m in Sources */,
 				8B4509241EEE8F3C00E91DA1 /* View+MASAdditions.m in Sources */,
 				8B45091C1EEE8F3C00E91DA1 /* MASCompositeConstraint.m in Sources */,
@@ -532,10 +552,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SYTableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Yunis.SYTableView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -543,10 +566,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SYTableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Yunis.SYTableView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -615,6 +641,7 @@
 				8B4508F11EEE8E5300E91DA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B4508F21EEE8E5300E91DA1 /* Build configuration list for PBXNativeTarget "SYTableViewTests" */ = {
 			isa = XCConfigurationList;
@@ -623,6 +650,7 @@
 				8B4508F41EEE8E5300E91DA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B4508F51EEE8E5300E91DA1 /* Build configuration list for PBXNativeTarget "SYTableViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -631,6 +659,7 @@
 				8B4508F71EEE8E5300E91DA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

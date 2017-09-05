@@ -8,6 +8,9 @@
 
 #import "SYTableViewHelper.h"
 #import "UIScrollView+emptyView.h"
+
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self;
+
 @interface SYTableViewHelper ()
 
 @property (nonatomic, strong) NSArray *items;
@@ -17,6 +20,11 @@
 
 @property (nonatomic, copy) TableViewCellConfigureBlock configureCellBlock;
 @property (nonatomic, copy) didSelectCellBlock selectCellBlock;
+@property (nonatomic, copy) sectionIndex sectionIndex;
+
+
+@property (nonatomic) NSInteger sectionCounts;
+@property (nonatomic) NSInteger rowCounts;
 
 @end
 
@@ -25,6 +33,7 @@
 - (instancetype)init
 {
     self = [super init];
+    self.sectionCounts = 1;
     return self;
 }
 
@@ -40,45 +49,69 @@
 }
 #pragma mark - Public Method
 //外部方法
-
+- (numberOfSections)numberOfSections
+{
+    WS(weakSelf);
+    return ^(NSInteger sections){
+        weakSelf.sectionCounts = sections;
+        return weakSelf;
+    };
+}
+- (numberOfRows)numberOfRows
+{
+    
+    WS(weakSelf);
+    
+    return ^(sectionIndex back)
+    {
+        weakSelf.sectionIndex = back;
+        return weakSelf;
+    };
+    
+}
 - (configureCell)configureCell
 {
+    WS(weakSelf);
     return ^(TableViewCellConfigureBlock back)
     {
-        self.configureCellBlock = [back copy];
+        weakSelf.configureCellBlock = back;
 
-        return self;
+        return weakSelf;
     };
 
 }
 - (didSelectCell)addSelectCell
 {
+    WS(weakSelf);
     return ^(didSelectCellBlock back){
-        self.selectCellBlock = [back copy];
-        return self;
+        weakSelf.selectCellBlock = back;
+        return weakSelf;
     };
 }
 - (configureSource)addItem
 {
+    WS(weakSelf);
     return ^(NSArray *items){
-        self.items = items;
-        return self;
+        weakSelf.items = items;
+        return weakSelf;
     };
 }
 - (cellIdentifier)addCellIdentifier
 {
+     WS(weakSelf);
     return ^(NSString *cellID)
     {
-        self.cellIdentifier = cellID;
-        return self;
+        weakSelf.cellIdentifier = cellID;
+        return weakSelf;
     };
 }
 - (emptyTitle)addEmptyTitle
 {
+    WS(weakSelf);
     return ^(NSString *emptyTitle)
     {
-        self.emptyViewTitle = emptyTitle;
-        return self;
+        weakSelf.emptyViewTitle = emptyTitle;
+        return weakSelf;
     };
 }
 #pragma mark - Private Method
@@ -97,23 +130,26 @@
     }
 }
 #pragma mark UITableViewDataSource
-
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.sectionCounts;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSInteger count = self.sectionIndex(section);
     if (self.emptyViewTitle)
     {
         [tableView tableViewDisplayEmptyViewWithTitle:self.emptyViewTitle
-                               ifNecessaryForRowCount:self.items.count];
+                               ifNecessaryForRowCount:count];
     }
-    return self.items.count;
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier
                                                             forIndexPath:indexPath];
-    id item = [self itemAtIndexPath:indexPath];
-    self.configureCellBlock(cell, item);
+    self.configureCellBlock(cell, indexPath);
     return cell;
 }
 #pragma mark - Event Response
